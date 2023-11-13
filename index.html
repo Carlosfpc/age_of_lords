@@ -55,8 +55,23 @@
     document.getElementById('guessButton').onclick = function() {
       var userGuess = document.getElementById('userGuess').value;
       var resultMessage = '';
-      if(userGuess == randomNumber) {
+      if (userGuess == randomNumber) {
         resultMessage = 'Correcto! Adivinaste el número.';
+
+        // Enviar el resultado al servidor a través de una solicitud AJAX
+        fetch('/guardarResultado', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            resultado: 'correcto', // Puedes enviar otros datos relacionados con el juego aquí
+          }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data); // Manejar la respuesta del servidor si es necesario
+          });
       } else {
         resultMessage = 'Incorrecto. Intenta de nuevo.';
       }
@@ -64,6 +79,7 @@
     };
   });
 </script>
+
 </head>
 <body>
   <div class="game-container">
