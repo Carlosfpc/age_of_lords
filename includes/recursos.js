@@ -1,5 +1,5 @@
 export function actualizarRecursos() {
-  const idUsuario = 'ID_DEL_USUARIO'; // Reemplazar con el ID de usuario correspondiente
+  const idUsuario = '0'; // Reemplazar con el ID de usuario correspondiente
 
   fetch(`http://localhost:3000/recursos/${idUsuario}`)
     .then(response => response.json())
